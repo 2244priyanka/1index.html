@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Student Marks Calculator</title>
+
+<style>
+body{
+ font-family:Arial;background:#f5f9ff;margin:30px;color:#17233c;
+}
+h1{text-align:center;font-size:42px}
+.top{text-align:center;color:#666;font-size:18px}
+.main{display:flex;gap:30px;justify-content:center}
+.box{
+ background:white;width:500px;padding:25px;border-radius:12px;
+ box-shadow:0 2px 8px #ddd;
+}
+.left{background:#f7fbff}
+.right{background:#fbfffc}
+h2{color:#123b76}
+label{display:block;margin-top:15px}
+input{
+ width:95%;padding:13px;margin-top:7px;
+ border:1px solid #ccc;border-radius:7px;font-size:16px
+}
+button{
+ width:100%;padding:14px;margin-top:20px;
+ border:0;border-radius:7px;background:#287be5;
+ color:white;font-size:17px;cursor:pointer
+}
+.reset{background:white;color:#333;border:1px solid #ccc}
+table{width:100%;border-collapse:collapse;margin-top:15px}
+th,td{padding:12px;border:1px solid #ddd;text-align:left}
+th{background:#eef1f6}
+.highlight{background:#edf5ff;font-weight:bold}
+.cards{display:flex;gap:12px;margin-top:20px}
+.cards div{
+ flex:1;padding:20px;text-align:center;border-radius:10px;
+ font-size:18px
+}
+.grade{background:#fff1b8}
+.status{background:#dff7e9}
+.info{background:#eee8ff;padding:18px;margin-top:20px;border-radius:10px}
+</style>
+</head>
+
+<body>
+
+<h1>🎓 Student Marks Calculator</h1>
+
+<p class="top">
+Enter student details and marks to calculate total, percentage and grade.
+</p>
+<p class="top">A simple JavaScript project for beginners.</p>
+
+<div class="main">
+
+<!-- LEFT -->
+<div class="box left">
+<h2>👤 Enter Student Details</h2>
+
+<label>Student Name</label>
+<input id="name" value="Rahul">
+
+<label>Age</label>
+<input id="age" value="21">
+
+<label>Maths Marks (out of 100)</label>
+<input id="maths" value="75">
+
+<label>Science Marks (out of 100)</label>
+<input id="science" value="82">
+
+<label>English Marks (out of 100)</label>
+<input id="english" value="68">
+
+<button onclick="calculate()">▣ Calculate Result</button>
+<button class="reset" onclick="reset()">↻ Reset</button>
+</div>
+
+
+<!-- RIGHT -->
+<div class="box right">
+<h2>📊 Student Result</h2>
+
+<h1 id="rname" style="text-align:left;font-size:30px">Rahul</h1>
+<p>Age: <span id="rage">21</span></p>
+<hr>
+
+<table>
+<tr>
+<th>Subject</th>
+<th>Marks (out of 100)</th>
+</tr>
+
+<tr><td>Maths</td><td id="rmaths">75</td></tr>
+<tr><td>Science</td><td id="rscience">82</td></tr>
+<tr><td>English</td><td id="renglish">68</td></tr>
+
+<tr class="highlight">
+<td>Total</td><td id="total">225</td>
+</tr>
+
+<tr class="highlight">
+<td>Percentage</td><td id="percentage">75%</td>
+</tr>
+</table>
+
+<div class="cards">
+<div class="grade">
+⭐ Grade<br><b id="grade">B</b>
+</div>
+
+<div class="status">
+✅ Status<br><br>
+<b id="pass">Pass</b>
+</div>
+</div>
+
+
+
+<div class="info">
+📊 Highest Mark: <b id="high">82</b><br><br>
+📉 Lowest Mark: <b id="low">68</b>
+</div>
+
+</div>
+</div>
+
+
+<script>
+
+function calculate(){
+
+let name=document.getElementById("name").value;
+let age=document.getElementById("age").value;
+
+let m=Number(document.getElementById("maths").value);
+let s=Number(document.getElementById("science").value);
+let e=Number(document.getElementById("english").value);
+
+let total=m+s+e;
+let percentage=total/3;
+
+let grade;
+
+if(percentage>=90) grade="A+";
+else if(percentage>=75) grade="B";
+else if(percentage>=60) grade="C";
+else if(percentage>=40) grade="D";
+else grade="F";
+
+document.getElementById("rname").innerText=name;
+document.getElementById("rage").innerText=age;
+
+document.getElementById("rmaths").innerText=m;
+document.getElementById("rscience").innerText=s;
+document.getElementById("renglish").innerText=e;
+
+document.getElementById("total").innerText=total;
+document.getElementById("percentage").innerText=
+percentage.toFixed(0)+"%";
+
+document.getElementById("grade").innerText=grade;
+
+document.getElementById("pass").innerText=
+percentage>=40 ? "Pass" : "Fail";
+
+document.getElementById("high").innerText=Math.max(m,s,e);
+document.getElementById("low").innerText=Math.min(m,s,e);
+
+}
+
+
+function reset(){
+
+document.getElementById("name").value="";
+document.getElementById("age").value="";
+document.getElementById("maths").value="";
+document.getElementById("science").value="";
+document.getElementById("english").value="";
+
+}
+
+</script>
+
+</body>
+</html>
